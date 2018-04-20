@@ -7,12 +7,22 @@
 
 
 //load some data
-$names = [
-	'Jeff',
-	'John',
-	'Mary'
+// $names = [
+// 	'Jeff',
+// 	'John',
+// 	'Mary'
+// ];
+$person = [
+	'age' => 31,
+	'hair' => 'brown',
+	'career' => 'web developer'
 ];
 
+$person['name'] = 'Richard';
+
+
+var_dump($person);
+die();
 // foreach ($names as $name) {
 // 	echo $name . ',';
 // }
