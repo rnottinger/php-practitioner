@@ -1,31 +1,59 @@
 <?php
-// this file will receive and prepare the data
-//$greeting = "Hello, " . htmlspecialchars($_GET['name']);
-// then the following file will render the data
-// this is a highlevel concept of separatation of concerns
-//require 'index.view.php';
+
+require 'functions.php';
+//look for the nouns. think of it as some blueprint for some concept in your application, your finding your important points in your application
+// tables --> tasks, users, products, comments
+// class will be the singular form of the table
+// properties would correspond to your database columns 
+class Task {
+	protected $description;
+	protected $completed = false;  // always false when first create it
+	public function __construct($description)
+	{
+		$this->description = $description;
+	}
+
+	// if you ever want to figure out...if the task is complete
+	public function isComplete()
+	{
+		return $this->completed;
+	}
+
+	// Complete the task
+	public function complete()
+	{
+		$this->completed = true;		
+	}
+
+	// Display the protected property description
+	public function description()
+	{
+		return $this->description;
+	}
+	
+}
 
 
-//load some data
-// $names = [
-// 	'Jeff',
-// 	'John',
-// 	'Mary'
-// ];
-$person = [
-	'age' => 31,
-	'hair' => 'brown',
-	'career' => 'web developer'
+
+// $task = new Task('Go to the store');
+
+// var_dump($task->isComplete());
+
+// $task->complete();
+
+// var_dump($task->isComplete());
+
+
+$tasks = [
+	new Task('Go to the store'),
+	new Task('Finish my screencast'),
+	new Task('Clean my room')
 ];
 
-$person['name'] = 'Richard';
+$tasks[0]->complete();
+
+// dd($tasks);
+//
 
 
-var_dump($person);
-die();
-// foreach ($names as $name) {
-// 	echo $name . ',';
-// }
-
-// load some view
-require 'index.view.php';  // within the view you cycle through that array and echoed out the name wrapped in a list item 
+require 'index.view.php'; 

@@ -3,22 +3,17 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
-	<style type="text/css">
-		header {
-			background: #e3e3e3;
-			padding: 2em;
-			text-align: center
-		}
-	</style>
 </head>
 <body>
-	<pre>
-		<?php var_dump($person); ?>
-	</pre>
-	
 	<ul>
-		<?php foreach ($person as $feature => $val) : ?>
-			<li><strong><?= $feature; ?></strong> <?= $val; ?></li>
+		<?php foreach ($tasks as $task) : ?>
+			<li>
+				<?php if ($task->isComplete()) : ?>
+					<strike><?= $task->description(); ?></strike>
+				<?php else : ?>			
+					<?= $task->description(); ?>	
+				<?php endif; ?>		
+			</li>
 		<?php endforeach; ?>
 	</ul>
 </body>
