@@ -3,10 +3,16 @@
 class Connection
 {
 
-	public static function make()
+	public static function make($config)
 	{
 		try {
-			return new PDO('mysql:host=127.0.0.1;dbname=mytodo','root','');	
+			// return new PDO('mysql:host=127.0.0.1;dbname=mytodo','root','');	
+			return new PDO(
+				$config['connection'] . ';dbname=' . $config['name'],
+				$config['username'],
+				$config['password'],
+				$config['options']
+			);	
 		// } catch (Exception $e)  any kind of exception
 		} catch (PDOException $e) { // or a specific type of exception
 			// die('Could not connect');
