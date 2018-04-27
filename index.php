@@ -1,22 +1,10 @@
 <?php
-
-require 'functions.php';
-
-
+$query = require 'bootstrap.php';
 require 'Task.php';
 
 
-// Task::all();
-// $task->all();
-
-$pdo = connectToDb();
-
-$tasks = fetchAllTasks($pdo);
-
-// fetch() method will retrieve a single row
-
-// var_dump($tasks);
-// dd($tasks[0]->description);
+// we really only want to say ... just want all tasks & load the view
+$tasks = $query->selectAll('tasks', 'Task');
 require 'index.view.php'; 
 
 
