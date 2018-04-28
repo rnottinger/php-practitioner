@@ -5,6 +5,13 @@
 	<title>Document</title>
 </head>
 <body>
+	<nav>
+		<ul>
+			<li><a href="about">About Page</a></li>
+			<li><a href="about/culture">Our Culture</a></li>
+			<li><a href="contact">Contact Us</a></li>
+		</ul>
+	</nav>
 	<ul>
 		<?php foreach ($tasks as $task) : ?>
 			<li>

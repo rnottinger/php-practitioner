@@ -7,11 +7,15 @@ class Connection
 	{
 		try {
 			// return new PDO('mysql:host=127.0.0.1;dbname=mytodo','root','');	
+			$dsn		= $config['connection'] . ';dbname=' . $config['name'];
+			$user		= $config['username'];
+			$password	= $config['password'];
+			$options	= $config['options'];
 			return new PDO(
-				$config['connection'] . ';dbname=' . $config['name'],
-				$config['username'],
-				$config['password'],
-				$config['options']
+				$dsn,
+				$user,
+				$password,
+				$options
 			);	
 		// } catch (Exception $e)  any kind of exception
 		} catch (PDOException $e) { // or a specific type of exception
