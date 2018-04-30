@@ -1,11 +1,18 @@
 <?php
 
-function dd($data)
+
+// dd($posts,true); use <pre> tags to format the var_dump
+// dd($posts); no format...use this if chrome extension will format var_dump
+function dd($data,$format = false)
 {
-	echo '<pre>';
+	if ($format){
+		echo '<pre>';
+		var_dump($data);
+		echo '</pre>';
+		die();
+	}
 	die(var_dump($data));
 	// highlight_string(var_export($data, true));
-	echo '</pre>';
 }
 
 

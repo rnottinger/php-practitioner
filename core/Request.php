@@ -4,6 +4,7 @@ class Request
 {
 
     public static function uri(){
+        // dd($_SERVER);
         return trim($_SERVER['REQUEST_URI'],'/');
     }
 }
