@@ -1,6 +1,6 @@
 <?php
 
-require 'Post.php';
+require 'Models/Post.php';
 
 $posts = [
     new Post('My First Post', 'RO', true),

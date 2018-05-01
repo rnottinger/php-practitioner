@@ -32,4 +32,21 @@ class QueryBuilder
         // $tasks = $statement->fetchAll(PDO::FETCH_OBJ);  // instance of a generic class
         return $statement->fetchAll(PDO::FETCH_CLASS,$intoClass);  // instance of a generic class
     }
+
+    public function insert($table,$fields)
+    {
+        // sprintf - allows you to declare a string with placeholders which you can attach variables or values to
+        $sql = sprintf(
+            'insert into %s (%s) values (%s)',
+            'one','two','three'
+        );
+
+        dd($sql);
+        // insert into %s (%s) values (%s)  <-- says insert into some table name ...some column names ... some column values
+        // $statement = $this->pdo->prepare("insert into {table} (%s) values( :first_name, :last_name ");
+        // :placeholder
+        // $statement->execute([
+        //     'first_name' =
+        // ])
+    }
 }
