@@ -10,8 +10,8 @@
 ?>
 <!-- <form method="GET" action="/name"> -->
 <form method="POST" action="/name">
-	<label for="firstName">First Name<label><input firstName="first_name">
-	<label for="lastName">Last Name<label><input lastName="last_name">
+	<label for="firstName">First Name<label><input name="first_name">
+	<label for="lastName">Last Name<label><input name="last_name">
 	<button type="submit">Submit</button>
 </form>
 <?php require('partials/footer.php'); ?>

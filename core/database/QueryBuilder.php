@@ -33,20 +33,57 @@ class QueryBuilder
         return $statement->fetchAll(PDO::FETCH_CLASS,$intoClass);  // instance of a generic class
     }
 
-    public function insert($table,$fields)
+    public function insert($table,$parameters)
     {
+        $columnNames    = implode(', ', array_keys($parameters));
+        // $columnValues   = ':' . implode(', :', array_keys($parameters));
+
+        $columnValues = array_map(function ($param){
+            return ":{$param}";
+        }, array_keys($parameters));
+        $columnValues = implode(', ',$columnValues);
+
+        // dd($columnValues);
+
         // sprintf - allows you to declare a string with placeholders which you can attach variables or values to
         $sql = sprintf(
             'insert into %s (%s) values (%s)',
-            'one','two','three'
+            $table,$columnNames,$columnValues
         );
 
-        dd($sql);
+        // $parameters = the key represents the column name
+        // dd(implode(', ', array_keys($parameters)));
+
+        // dd($sql);
         // insert into %s (%s) values (%s)  <-- says insert into some table name ...some column names ... some column values
         // $statement = $this->pdo->prepare("insert into {table} (%s) values( :first_name, :last_name ");
+
+        try{
+            $statement = $this->pdo->prepare($sql);
+            //so at what point does it bind to the values...you can do this in a couple different ways
+            // $statement->bindParam(':name','Joe');// says bind the :placeholder parameter to value
+            
+            // alternatively you can just pass an array to the execute method
+            $statement->execute($parameters);
+
+        // } catch (Exception $e)
+        } catch (PDOException $e){
+            // could redirect or display a 404 page
+            die('Whoops, something went wrong.');
+            // in real live you will have something more sophisticated where you will let this bubble up 
+            // or local development you will spit out the message itself
+            // die($e->getMessage());  // but for production you would want to show this information to the user 
+            // but would just show a generic message or a 404 page
+        }
+
+
+        // so now if we pass a parameter that does not exist then it should fail but we instead get a warning
+        //      but really I want an exception...this is an important thing...
+        //          the query could not be performed...so lets make sure an exception is thrown
+        //              in config.php we setup our PDO options...update to PDO::ERRMODE_EXCEPTION
+
+
         // :placeholder
-        // $statement->execute([
-        //     'first_name' =
-        // ])
+        
     }
 }
