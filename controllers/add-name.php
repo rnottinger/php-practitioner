@@ -10,10 +10,10 @@ $app['database']->insert('users', [
     // 'age'           => $_POST['age']
 ]);
 // so we performed the query and did nothing
-$users = $app['database']->selectAll('users', 'User');
-require 'views/users.view.php'; 
+// $users = $app['database']->selectAll('users', 'User');
+// require 'views/users.view.php'; 
 
-
+// header('Location: /about');
 
 
 // we really only want to say ... just want all tasks & load the view

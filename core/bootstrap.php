@@ -5,11 +5,24 @@
 require 'core/functions.php';
 
 $app = [];
+
+// we are sort of storing our dependencies such as our config, and query builder within an array
+//      but instead lets setup a dedicated class for that
+//          so that we can bind dependencies into it
+//              then when we need to resolve dependencies out of it
+// we call this a simple dependency injection container
 $app['config'] = require 'config.php';
-require 'core/Router.php';
-require 'core/Request.php';
-require 'core/database/Connection.php';    // how we connect to the database
-require 'core/database/QueryBuilder.php';  // how we create a query builder
+
+// have to require more and more files
+// everytime I new up a class, I don't want to require a file...i just want it to automatically load
+// composer normalized everything...gave you a fast and efficient way to pull in packages
+//      modify an image
+//      create a thumbnail
+//      composer does provide an autoloader out of the box
+// require 'core/Router.php';
+// require 'core/Request.php';
+// require 'core/database/Connection.php';    // how we connect to the database
+// require 'core/database/QueryBuilder.php';  // how we create a query builder
 
 // $pdo = Connection::make();
 // $query  = new QueryBuilder(Connection::make());// could save it as a global variable 
