@@ -4,14 +4,16 @@ require 'Models/User.php';
 
 
 // $users = $app['database']->selectAll('users', 'User');
-$app['database']->insert('users', [
+// $app['database']->insert('users', [
+App::resolve('database')->insert('users', [
     'first_name'    => $_POST['first_name'],
     'last_name'     => $_POST['last_name'],
     // 'age'           => $_POST['age']
 ]);
 // so we performed the query and did nothing
 // $users = $app['database']->selectAll('users', 'User');
-// require 'views/users.view.php'; 
+$users = App::resolve('database')->selectAll('users', 'User');
+require 'views/users.view.php'; 
 
 // header('Location: /about');
 
