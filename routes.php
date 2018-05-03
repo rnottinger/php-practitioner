@@ -5,4 +5,4 @@ $router->get('about',           'PagesController@about');
 $router->get('about/culture',   'PagesController@aboutCulture');
 $router->get('contact',         'PagesController@contact');
 
-// $router->post('name',           'controllers/add-name.php');
+$router->post('name',           'PagesController@addName');

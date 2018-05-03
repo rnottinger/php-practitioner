@@ -17,23 +17,43 @@ class PagesController
         $users = App::resolve('database')->selectAll('users', 'User');
 
         // Return a response
-        require 'views/index.view.php'; 
+        // require 'views/index.view.php'; 
+        // return view('index'); 
+        // return view('index', [
+        //     'users' => $users
+        // ]); 
+        return view('index', compact('users'));
+        // create view() helper method in core/bootstrap.php
     }
 
     public function about()
     {
-        require 'views/about.view.php';
+        // require 'views/about.view.php';
+        return view('about');
     }
 
     public function contact()
     {
-        require 'views/contact.view.php';
+        // require 'views/contact.view.php';
+        return view('contact');
     }
 
     public function aboutCulture()
     {
         $coname = "Mule Kick Systems";
 
-        require 'views/about-culture.view.php';
+        // require 'views/about-culture.view.php';
+        return view('about-culture', compact('coname'));
+    }
+
+    public function addName()
+    {
+        App::resolve('database')->insert('users', [
+            'first_name'    => $_POST['first_name'],
+            'last_name'     => $_POST['last_name']
+        ]);
+        // require 'views/users.view.php'; 
+        
+        header('Location: /');
     }
 }

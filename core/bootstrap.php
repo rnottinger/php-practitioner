@@ -34,3 +34,9 @@ App::bind('database', new QueryBuilder(
 
 
 // this is like a little factory file that builds up our query builder and gives you the result
+
+function view($name,$data)
+{
+    extract($data); // extract is going to do the opposite of compact ['name' => 'joe'] will create $name
+    return require "views/{$name}.view.php";
+}

@@ -44,13 +44,15 @@ class Router
 
     protected function callControllerAction($controller, $actionMethodToTrigger)
     {
+        $controller = new $controller;
         // var_dump($controller,$actionMethodToTrigger);
         if (! method_exists($controller,$actionMethodToTrigger)) {  // if the controller does not have a method called about
             throw new Exception(
                 "{$controller} does not respond to the {$actionMethodToTrigger} action."
             );
         }
-        return (new $controller)->$actionMethodToTrigger();// we could have a situation where the controller does not have a method
+        // return (new $controller)->$actionMethodToTrigger();// we could have a situation where the controller does not have a method
+        return $controller->$actionMethodToTrigger();// we could have a situation where the controller does not have a method
 
     }
 

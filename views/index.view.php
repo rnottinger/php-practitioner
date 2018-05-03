@@ -1,4 +1,13 @@
 <?php require('partials/header.php'); ?>
+<ul>
+	<?php foreach ($users as $user) : ?>
+		<li>
+			<?= $user->fullName(); ?>
+		</li>
+	<?php endforeach; ?>
+</ul>
+
+
 <h1>Submit your name</h1>
 <form method="POST" action="/name">
 	<label for="firstName">First Name<label><input name="first_name">
