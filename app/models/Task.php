@@ -1,4 +1,5 @@
 <?php
+namespace App\Models;
 
 //look for the nouns. think of it as some blueprint for some concept in your application, your finding your important points in your application
 // tables --> tasks, users, products, comments

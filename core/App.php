@@ -1,4 +1,5 @@
 <?php
+namespace App\Core;
 // this is a basic dependency injection container
 //      will be a place to register or bind dependencies into it
 //      just as a storage place ...like a registry

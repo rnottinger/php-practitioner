@@ -1,5 +1,6 @@
 <?php
-
+namespace App\Core;
+use Exception;
 class Router
 {
     protected $routes = [
@@ -42,13 +43,16 @@ class Router
         return $this->routes;
     }
 
-    protected function callControllerAction($controller, $actionMethodToTrigger)
+    protected function callControllerAction($controllerName, $actionMethodToTrigger)
     {
-        $controller = new $controller;
+        // dd("App\\Controllers\\{$controllerName}");
+        $controllerName = "App\Controllers\\{$controllerName}";
+        // dd($controllerName);
+        $controller = new $controllerName;
         // var_dump($controller,$actionMethodToTrigger);
         if (! method_exists($controller,$actionMethodToTrigger)) {  // if the controller does not have a method called about
             throw new Exception(
-                "{$controller} does not respond to the {$actionMethodToTrigger} action."
+                "{$controllerName} does not respond to the {$actionMethodToTrigger} action."
             );
         }
         // return (new $controller)->$actionMethodToTrigger();// we could have a situation where the controller does not have a method

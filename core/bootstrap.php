@@ -1,4 +1,7 @@
 <?php
+use App\Core\App;
+use App\Core\Database\QueryBuilder;
+use App\Core\Database\Connection;
 // responsible for the behind the scenes work
 // notice we are manually loading every file that we need
 //      autoloading will pull in any class that we require
@@ -32,11 +35,16 @@ App::bind('database', new QueryBuilder(
 // App::get
 
 
-
+// be careful using global function... a few global functions are incredibly useful
 // this is like a little factory file that builds up our query builder and gives you the result
 
-function view($name,$data)
+function view($name,$data = [])
 {
     extract($data); // extract is going to do the opposite of compact ['name' => 'joe'] will create $name
-    return require "views/{$name}.view.php";
+    return require "app/views/{$name}.view.php";
+}
+
+function redirect($path)
+{
+    header("Location: {$path}");
 }

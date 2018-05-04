@@ -1,4 +1,6 @@
 <?php
+namespace App\Core\Database;
+use PDO;
 // QueryBuilder is responsible for building up sql queries
 class QueryBuilder
 {
@@ -22,6 +24,7 @@ class QueryBuilder
     // 
     public function selectAll($table, $intoClass)
     {
+        $intoClass = "App\\Models\\{$intoClass}";
         $statement = $this->pdo->prepare("select * from {$table}" );  // we prepare a statement, but we haven't executed yet
 
         $statement->execute();  // execute the statement
